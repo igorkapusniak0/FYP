@@ -1,0 +1,44 @@
+                               IP
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Version|  IHL  |Type of Service|        Total Length           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Identification        |Flags|      Fragment Offset    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Time to Live |    Protocol   |         Header Checksum       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options (if any)                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Version = 4 bits, ipv4 header = 0100/ipv6 header = 0110, either to signal ipv4 or ipv6
+IHL/Internet Header Length = 4 bits, how big the headers is. each bit represents 32 bits. 5(101 in binary) is the default if no option exists 
+DSCP/Differentiated Service Code Point = 6 bits what type of packet this is example voice over ip,
+ECN/ Explicit congestion notification = 2bits, way to send info from on point to another saying there is some congestion and the devices on each side can shape traffic
+Total length = 16 bits total size of header and payload.
+Identification = 16 bits, identitfy packet if fragmented.
+Flags = 3 bits, set to 1 or 0 to mark if something exists. for fragenting to identify certain components of the fragment
+Fragment Offset = 13 bits, how to reasemble packets on the other end
+TTL/ time to live = 8 bits prevent packet being infinitly sent round 
+Protocol = 8 bits, whats within payload and whats transfered over, 0x06 is tcp, udp is 0x11,
+header Checksum = 16 bits, checks hash on both ends to confirm packet has not been tampered with or corrupted
+Source ip =  32 bits
+Destination ip = 32bits
+
+                               TCP
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          Source Port          |       Destination Port        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Sequence Number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Acknowledgment Number                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Data |Rese-|  Control Flags  |                               |
+| Offset|rved |URG|ACK|PSH|RST|SYN|FIN|       Window Size        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|       Checksum                |    Urgent Pointer             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options (if any)                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+

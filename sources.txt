@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/34653875/python-how-to-send-data-over-tcp
+https://www.binarytides.com/raw-sockets-c-code-linux/
+https://inc0x0.com/tcp-ip-packets-introduction/tcp-ip-packets-3-manually-create-and-send-raw-tcp-ip-packets/
