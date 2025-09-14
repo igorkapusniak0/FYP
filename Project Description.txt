@@ -1,0 +1,72 @@
+For my final year project I will create decentralised peer to peer communication application for both mobile and desktop. The application will include text and image messaging and audio and video calls.
+The messages will be encrypted and signed before sending using pretty good privacy (PGP). To ensure only the sender and recipient can read the message.
+
+Unlike most modern communication apps which use a central server which the application communicates through, my application will send messages directly from the sender's device to the receiver's device.
+
+To anonymise the sender their message will be routed through the tor network. This will hide the IP address of the sender and further increase privacy and prevent the ability to track which IP address is communicating with who.
+
+Doing this provides many benefits such as:
+ 1. Not require hardware to host server for API request.
+ 2. No user data is stored on the cloud, meaning mass data leaks cannot occur.
+ 3. By avoiding a central server, user data cannot be sold to advertisers.
+ 4. Increased privacy for the users
+ 5. Potentially faster speeds, bitrate as data doesn't need to go through central server which could be a bottleneck
+
+The app will have a modern user looking interface and support group chats and workspaces (like on Slack).
+
+In addition to this application I plan on developing a self-hostable service that will be able to sync the users profile across devices, as due to the lack of a central server cross device accounts cannot exist.
+
+To develop this application I will be primarily using Java for both the mobile and desktop applications. The java.net package will be used for sending and receiving messages. Pretty Good Privacy (PGP) will be used as a method of encrypting the sent messages (this includes audio and video calls). Android studio will be used for the development of the mobile application and Java FX will be used for the desktop application.
+
+For the Sync server I will be using a Nodejs/express server with the use of a SQLite database
+
+Technologies used: Java, java.net, JavaFX, PGP, Android Studio, Nodejs, SQLite
+
+Why I would like to build this application:
+There are a few reasons that I would like to develop this application.
+
+Firstly, I always had an interest in the low level opperation of the internet protocol. For this project I plan on creating the ip packets myself instead of relying on existing solution to better understand how the IP protocol works.
+
+Secondly, I strongly believe that users should be entilted to privacy. Most existing end to end enrcrypted communication application can be bypassed by the owner of the product.
+Example: https://www.irishtimes.com/business/technology/should-you-worry-about-the-backdoor-found-in-whatsapp-s-encryption-1.2935969
+
+
+-------------------------------------
+
+For my final year project, I plan to create a decentralised peer-to-peer (P2P) communication application that works on both mobile and desktop platforms. This application will include features like text and image messaging, as well as audio and video calls. To ensure privacy, all messages will be encrypted and signed using Pretty Good Privacy (PGP), so only the sender and recipient can read the message content.
+Unlike most modern communication apps that rely on central servers, my app will send messages directly from the sender’s device to the receiver’s device. This eliminates the need for a middleman server and further enhances privacy.
+Additionally, to anonymise the sender, their messages will be routed through the Tor network. This hides the sender's IP address, preventing anyone from being able to track which IP address is communicating with whom. This increases privacy, as it becomes much harder to trace or surveil the communication.
+By using this approach, there are several key advantages:
+No need for a central server / servers – There’s no need for dedicated hardware to host a server that handles requests.
+
+
+No cloud storage of user data – Since no user data is stored on the cloud, large-scale data leaks can’t occur.
+
+
+Increased privacy – Without a central server, the user’s data is never stored in a way that could be accessed or sold by third parties.
+
+
+Faster communication – Messages and calls don’t need to go through a central server, so communication could be faster, with less risk of a bottleneck.
+
+
+The app will also have a modern, user-friendly interface and support features like group chats and workspaces (similar to Slack). However, since there’s no central server, there’s no easy way to sync user profiles across different devices. To solve this, I plan to create a self-hostable service that can sync a user’s profile across devices, so even without a server, users can still have consistent profiles and data across all their devices.
+Why I Want to Build This Application
+There are a few reasons why I’m passionate about this project.
+Firstly, I’ve always had a strong interest in the low-level operations of internet protocols. With this project, I want to take the opportunity to create the IP packets myself rather than relying on existing libraries or tools. This will help me understand how the IP protocol works on a deeper level.
+Secondly, I strongly believe that users should have full control over their privacy. Many existing communication apps that claim to offer end-to-end encryption still have vulnerabilities. One example of this is WhatsApp, which has faced issues around backdoors in its encryption. In 2017, it was revealed that WhatsApp's end-to-end encryption could be bypassed by the company itself. If the app owners can access your messages, then encryption doesn’t truly protect your privacy. You can read more about it here: https://www.irishtimes.com/business/technology/should-you-worry-about-the-backdoor-found-in-whatsapp-s-encryption-1.2935969. This type of vulnerability raises concerns about the level of trust users can place in these services.
+My goal with this application is to ensure that the messages cannot be accessed by anyone other than the sender and receiver. By using PGP encryption and routing messages through the Tor network, I aim to eliminate these vulnerabilities.
+Decentralised, Peer-to-Peer Communication
+Most existing communication apps depend on centralised servers. These servers handle all the requests, store user data, and ensure messages are delivered between users. This however introduces a number of risks. Centralised servers are often targeted by hackers, and if these servers are compromised, user data can be exposed. Even without a direct breach, companies operating these servers can sell or misuse user data.
+A decentralised peer-to-peer model avoids this issue because it removes the central server entirely. In this system, messages are sent directly from one device to another, meaning there’s no central place for data to be stored or intercepted. As a result, there’s no central point of failure for hackers to target.
+By removing the central server, the user is in complete control. Their messages are not stored on any cloud server, so they can’t be leaked or stolen. The entire communication process is more secure, and privacy is guaranteed as long as the encryption holds.Additionally, because the data doesn’t need to go through a central server, this could result in faster communication speeds since there’s no server bottleneck.
+The Role of Tor for Anonymity
+In addition to encryption, I’m using the Tor network to further anonymise users. Tor is a free, open-source software that allows users to route their internet traffic through multiple layers of encryption, bouncing it through several nodes around the world. This makes it nearly impossible to trace the original source of the traffic.
+By routing messages through Tor, the sender’s IP address is hidden. This adds another layer of security and privacy, as even if someone were able to intercept the message, they wouldn’t be able to trace it back to the sender’s device. This helps to protect users from surveillance and tracking, making it much harder for anyone to know who is communicating with whom.
+
+
+
+Syncing Across Devices Without a Central Server
+One challenge with decentralised applications is how to manage cross-device syncing. Without a central server, it's not easy to sync things like user profiles and chat histories between devices. To solve this, I’m planning to build a self-hostable service. This service would allow users to sync their profile information, like chats, images and friends, across devices without storing any personal data in the cloud.
+I’ll use a Node.js/Express server along with an SQLite database to store basic profile data. This would be a self-hosted service, meaning users could set it up themselves on their own infrastructure. This gives users control over their data and ensures that no one else has access to their personal information unless they choose to share it.
+
+
