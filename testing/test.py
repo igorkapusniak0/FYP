@@ -1,41 +1,41 @@
 import socket
+import gnupg
+import os
 
-# ip = "192.168.178.116"
+gpg_path = "/home/igor/Nextcloud/College/Year_4/FYP/pgp_stuff_sender"
 
-# print(socket.inet_aton(ip))
+gpg = gnupg.GPG(gnupghome=gpg_path)
+gpg.encoding = 'utf-8'
 
 
-# def ip_to_hex(ip):
-#     return ''.join(f"{int(part):02x}" for part in ip.split('.'))
+with open("/home/igor/Nextcloud/College/Year_4/FYP/receiver_pubkey.asc", "r") as f:
+    key_data = f.read()
 
-# print(ip_to_hex(ip))
+import_result = gpg.import_keys(key_data)
+receiver_key = import_result.fingerprints[0]
 
-ip_header = bytearray.fromhex(
-    '45'      # Version + IHL                0-1
-    '00'      # TOS                          1-2
-    '0000'    # Total Length                 2-4
-    'abcd'    # Identification               4-6
-    '0000'    # Flags + Fragment Offset      6-8
-    'ff'      # TTL                          8-9
-    '06'      # Protocol (TCP)               9-10
-    '0000'    # Checksum (to be calculated)  10-12
-    '00000000' # Source IP                   1
-    '00000000' # Destination IP
-)
+print(receiver_key)
 
-# for i in range(22):
-#     print(f"{i} = {ip_header[i:i+1]}")
+public_keys = gpg.list_keys()
+private_keys = gpg.list_keys(True)
 
-tcp_header = bytearray.fromhex(
-    'abcd'      # Source Port
-    'abcd'      # Destination Port
-    '00000000'  # Sequence Number
-    '00000000'  # Acknowledgment Number
-    '50'        # Data Offset + Reserved + NS flag
-    '02'        # Control Flags
-    '4000'      # Window Size
-    '0000'      # Checksum
-    '0000'      # Urgent Pointer
-)
+my_public_key = public_keys[0]["fingerprint"] 
+my_private_key = private_keys[0]["keygrip"]
 
-print(tcp_header[16:18])
+print(my_public_key)
+print(my_private_key)
+
+
+clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+clientsocket.connect(('localhost', 8089))
+
+message = """
+hello world
+"""
+
+encrypted_ascii_data = gpg.encrypt(message, str(receiver_key), always_trust=True)
+print("encrypted: "+str(encrypted_ascii_data))
+
+
+encoded_message = str(encrypted_ascii_data).encode()
+clientsocket.send(encoded_message)

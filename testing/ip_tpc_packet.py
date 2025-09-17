@@ -131,7 +131,7 @@ def get_my_ip():
     print(source)
     return source
 
-destination = "192.168.178.1"
+destination = "127.0.0.1"
 
 create_packet()
 
