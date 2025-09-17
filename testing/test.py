@@ -8,7 +8,7 @@ gpg = gnupg.GPG(gnupghome=gpg_path)
 gpg.encoding = 'utf-8'
 
 
-with open("/home/igor/Nextcloud/College/Year_4/FYP/receiver_pubkey.asc", "r") as f:
+with open("/home/igor/Nextcloud/College/Year_4/FYP/pgp_stuff_receiver/receiver_pubkey.asc", "r") as f:
     key_data = f.read()
 
 import_result = gpg.import_keys(key_data)
