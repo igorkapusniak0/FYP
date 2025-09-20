@@ -1,6 +1,23 @@
 import socket
 import gnupg
 import os
+import miniupnpc
+
+upnp = miniupnpc.UPnP()
+upnp.discoverdelay = 200  
+upnp.discover()
+upnp.selectigd()
+
+local_ip = upnp.lanaddr
+print(local_ip)
+external_port = 8089
+internal_port = 8089
+protocol = 'TCP'
+description = "PGP_Message_Receiver"
+
+upnp.addportmapping(external_port, protocol, local_ip, internal_port, description, '')
+
+print(f"Port {external_port} mapped: {upnp.externalipaddress()}:{external_port}")
 
 pgp_sender_path="/home/igor/Nextcloud/College/Year_4/FYP/pgp_stuff_sender"
 pgp_receiver_path="/home/igor/Nextcloud/College/Year_4/FYP/pgp_stuff_receiver"
@@ -18,7 +35,7 @@ print(my_private_key)
 
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind(('localhost', 8089))
+serversocket.bind(('192.168.178.165', 8089))
 serversocket.listen(5)
 
 try:
